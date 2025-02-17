@@ -2,122 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
         body, html {
-            font-family: Arial, sans-serif;
-            background: #34495e; /* Light blue background color */
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #8e44ad, #3498db); /* Gradient background */
             margin: 0;
             padding: 0;
             height: 100%;
+            display: flex;
             justify-content: center;
             align-items: center;
-            display: flex;
         }
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100%;
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
         }
-        .container1-center{
-                max-width: 900px;
-                width: 90%;
-                max-height: 100vh;
-                overflow-y: auto;
-                background-color: rgba(255,255,255,0.95);
-                border-radius: 15px;
-                padding: 20px;
-                backdrop-filter: blur(15px);
-        }
-        .container1-center h1{
-            color: #333;
+
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
             text-align: center;
-            margin-bottom: 20 px;
-        }
-        div {
-            border-radius: 5px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px; /* Decreased container width */
-            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
-        h1, label {
-            color: black;
-        }
-
-        input {
-            width: 70%;
-            padding: 8px;
-            margin-bottom: 2px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 2px;
+        form {
+            display: flex;
+            flex-direction: column;
         }
 
         .input-group {
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            flex-direction: column;
         }
 
-        .input-group label {
-            width: 28%; 
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="file"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            outline: none;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        input:focus {
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            border-color: #3498db;
         }
 
         button {
-            background-color: #4caf50;
+            background: linear-gradient(135deg, #3498db, #8e44ad);
             color: white;
-            padding: 10px 15px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
             border: none;
-            border-radius: 4px;
+            border-radius: 12px;
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 20px;
         }
 
         a {
-            color: #007bff;
+            color: #3498db;
+            font-weight: 600;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #8e44ad;
         }
     </style>
 </head>
 <body>
-    <div class="container1-center">
-        <h1>Registration Page</h1>
-        <div>
-            <form action="{{url_for('registration')}}" method="POST" enctype="multipart/form-data">
-                <div class="input-group">
-                    <label>User Name : </label><input id="username" name="username" type="text" placeholder="User Name" />
-                </div>
-                <div class="input-group">
-                    <label>Password : </label><input id="password" name="password" type="password" placeholder="Password" />
-                </div>
-                <div class="input-group">
-                    <label>First Name:</label><input id="firstname" name="firstname" type="text" placeholder="First Name" />
-                    </div>
-                    <div class="input-group">
-                    <label>Last Name:</label><input id="lastname" name="lastname" type="text" placeholder="Last Name" />
-                </div>
-                <div class="input-group">
-                    <label>Email:</label><input id="email" name="email" type="text" placeholder="Email" />
-                </div>
-                <div class="input-group">
-                    <label>Upload File:</label><input type="file" id="textfile" name="textfile" />
-                </div>
-                <button id="submit" name="submit">Register</button>
-            </form>
-        </div>
-        <p>Already have an account? Please click <a href="{{url_for('login')}}">here to login</a></p>
+    <div class="container">
+        <h1>Register</h1>
+        <form action="{{url_for('registration')}}" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label for="username">User Name</label>
+                <input id="username" name="username" type="text" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Enter your password" required>
+            </div>
+            <div class="input-group">
+                <label for="firstname">First Name</label>
+                <input id="firstname" name="firstname" type="text" placeholder="Enter your first name" required>
+            </div>
+            <div class="input-group">
+                <label for="lastname">Last Name</label>
+                <input id="lastname" name="lastname" type="text" placeholder="Enter your last name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="textfile">Upload File</label>
+                <input type="file" id="textfile" name="textfile">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{{url_for('login')}}">Log in here</a></p>
     </div>
 </body>
 </html>
+
